@@ -7,7 +7,7 @@
 %% Variables
 
 m3fmFilename = 'D:\MIKE Zero Projects\New_TW_Model\PFOW_Coupled_V02.mfm';    %filename of model definition file
-TurbineListFilename = 'D:\Datasets\TeraWatt data\Array layouts\150331\depth calcs\all_UTM30N.csv';    % filename of CSV with turbine info. See fnReadTurbinesFile.m for details of this file.
+TurbineListFilename = 'D:\Datasets\TeraWatt data\Array layouts\150331\depth calcs\all_UTM30N_withorientations.csv';    % filename of CSV with turbine info. See fnReadTurbinesFile.m for details of this file.
 TurbineListSkip = 1; % number of lines of header to skip at the start of the turbine list
 
 % Global setup parameters
@@ -33,51 +33,51 @@ TurbineSpecs.variabledrag = true;  % set TRUE to use the Cd/Cl table, or FALSE f
 TurbineSpecs.fixeddragcoeff = 0.9;   % must exist, but only used if variabledrag=FALSE
 
 TurbineSpecs.caCtTable = {'[TABLE]';    %Table of lift & drag coefficients. Must exist, but ignored unless variabledrag=true.
-        'number_of_directions = 2'; 
+        'number_of_directions = 3'; 
         'minimum_direction = 0';
         'maximum_direction = 360';
         'number_of_speeds = 15';
         'minimum_speed = 0.75';
         'maximum_speed = 4.25'; %4.25 for Terawatt profile
         %Terawatt profile below
-        'cd_1 = 0.0, 0.0';  % drag coefficients for first speed at all directions
-        'cd_2 = 0.85, 0.85';
-        'cd_3 = 0.85, 0.85';
-        'cd_4 = 0.85, 0.85';
-        'cd_5 = 0.85, 0.85';
-        'cd_6 = 0.85, 0.85';
-        'cd_7 = 0.85, 0.85';
-        'cd_8 = 0.85, 0.85';
-        'cd_9 = 0.635, 0.635';
-        'cd_10 = 0.490, 0.490';
-        'cd_11 = 0.385, 0.385';
-        'cd_12 = 0.308, 0.308';
-        'cd_13 = 0.250, 0.250';
-        'cd_14 = 0.205, 0.205';
-        'cd_15 = 0.0, 0.0';
+        'cd_1 = 0.0, 0.0, 0.0';  % drag coefficients for first speed at all directions
+        'cd_2 = 0.85, 0.0, 0.85';
+        'cd_3 = 0.85, 0.0, 0.85';
+        'cd_4 = 0.85, 0.0, 0.85';
+        'cd_5 = 0.85, 0.0, 0.85';
+        'cd_6 = 0.85, 0.0, 0.85';
+        'cd_7 = 0.85, 0.0, 0.85';
+        'cd_8 = 0.85, 0.0, 0.85';
+        'cd_9 = 0.635, 0.0, 0.635';
+        'cd_10 = 0.490, 0.0, 0.490';
+        'cd_11 = 0.385, 0.0, 0.385';
+        'cd_12 = 0.308, 0.0, 0.308';
+        'cd_13 = 0.250, 0.0, 0.250';
+        'cd_14 = 0.205, 0.0, 0.205';
+        'cd_15 = 0.0, 0.0, 0.0';
 
-        'cl_1 = 0, 0';  %lift coefficients for first speed at all directions
-        'cl_2 = 0, 0';
-        'cl_3 = 0, 0';
-        'cl_4 = 0, 0';
-        'cl_5 = 0, 0';
-        'cl_6 = 0, 0';
-        'cl_7 = 0, 0';
-        'cl_8 = 0, 0';
-        'cl_9 = 0, 0';
-        'cl_10 = 0, 0';
-        'cl_11 = 0, 0';
-        'cl_12 = 0, 0';
-        'cl_13 = 0, 0';
-        'cl_14 = 0, 0';
-        'cl_15 = 0, 0';
+        'cl_1 = 0, 0, 0';  %lift coefficients for first speed at all directions
+        'cl_2 = 0, 0, 0';
+        'cl_3 = 0, 0, 0';
+        'cl_4 = 0, 0, 0';
+        'cl_5 = 0, 0, 0';
+        'cl_6 = 0, 0, 0';
+        'cl_7 = 0, 0, 0';
+        'cl_8 = 0, 0, 0';
+        'cl_9 = 0, 0, 0';
+        'cl_10 = 0, 0, 0';
+        'cl_11 = 0, 0, 0';
+        'cl_12 = 0, 0, 0';
+        'cl_13 = 0, 0, 0';
+        'cl_14 = 0, 0, 0';
+        'cl_15 = 0, 0, 0';
         'EndSect  // TABLE'};
     % note re drag & lift coefficients - easiest way to think about this
     % table structure is that the way it's laid out above is the same as
     % the shape of the table in the GUI - rows are speeds, columns are
     % directions.
     
-TurbineSpecs.orientationoverride = 90;    % Leave blank ([]) to use directions given for individual turbines in TurbineList.
+TurbineSpecs.orientationoverride = [];    % Leave blank ([]) to use directions given for individual turbines in TurbineList.
                                         %   Enter here to force all
                                         %   turbines to one orientation -
                                         %   most useful if they have equal
