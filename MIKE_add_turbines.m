@@ -4,6 +4,11 @@
 
 % Copyright Simon Waldman / Heriot-Watt Universtiy, November 2014.
 
+% The latest version of this script may be found at
+% https://github.com/TeraWatt-EcoWatt2050/MIKE_add_turbines.
+% If it helps you with a publication or report, an acknowledgement would be
+% appreciated.
+
 %% Variables
 
 m3fmFilename = 'D:\MIKE Zero Projects\New_TW_Model\PFOW_Coupled_V02.mfm';    %filename of model definition file

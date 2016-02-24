@@ -13,7 +13,7 @@ for which it was developed:
 
 Waldman S, Baston S, Nemalidinne R, Chatzirodou A, Venugopal V, Side J, “Implementation of tidal turbines in MIKE 3 and Delft3D models of Pentland Firth & Orkney Waters” (in prep)
 
-Improvements to this script are welcome.
+Improvements to this script are welcome. The latest version may be found at https://github.com/TeraWatt-EcoWatt2050/MIKE_add_turbines.
 
 -Simon Waldman.
 
