@@ -2,6 +2,7 @@
 % and a MIKE .mesh file, and produce the input file required for 
 % MIKE_add_turbines. It will only work for triangular meshes, because I
 % haven't bothered to allow for >3 nodes per element.
+% Requires mapping toolbox, and the DHI toolbox.
 % In the long run, should really merge this into the main script.
 
 % Copyright Simon Waldman / Heriot-Watt University 2016
@@ -17,26 +18,29 @@ InputCSVFilename = 'C:\documents\Projects\TeraWatt\Array layouts\layout_brough_n
 SkipLines = 1; %lines to skip at the start of the input file, eg for header info.
 MeshFilename = 'C:\documents\MIKE Zero Projects\new_TW_model\PFOW_Mesh_V02.mesh'; %MIKE .mesh file
 OutputCSVFilename = 'C:\temp\testoutput.csv'; % filename for output file
-TidalAmplitude = 4; % how far does water level drop below zero?
-TurbineDiameter = 20; % if this is non-zero, then turbines that would break the surface (given TidalAmplitude) will be lowered to just stay submerged.
 
-ConvertLLtoUTM = 0; % 1 if the original CSV is in lon/lat, and the model is in UTM.
+ConvertLLtoUTM = 0; % if the original CSV is in lon/lat, and the model is in UTM, 
+                    % set this to 1 to convert automatically.
                     %    In any other situation set this to 0, and the
-                    %    coordinates will be left along - they will need to
+                    %    coordinates will be left alone - they will need to
                     %    match the form used in the MIKE model.
                     
 HeightOffSeabed = 15; % desired distance from seabed to turbine hubs in metres
                       % This has to be the same for all turbines. If you
-                      % want to be cleverer than this, you probably want to
+                      % want to be cleverer than this, with different heights
+                      % for different turbines, you probably want to
                       % create the CSV file yourself by other means and not
                       % use this script.
+TidalAmplitude = 4; % how far does water level drop below zero?
+TurbineDiameter = 20; % if this is non-zero, then turbines that would break the surface (given TidalAmplitude because of shallow bathymetry) will be lowered to just stay submerged.
+
 
 %% Read intput files
 
 Input = csvread( InputCSVFilename, SkipLines );
 %FIXME check for a successful read, that X and Y are the same length, etc.
 
-NumTurbs = length(X);
+NumTurbs = size(Input,1);
 
 [et, nodes] = mzReadMesh(MeshFilename);  %et = element table; nodes = nodes.
 trMesh2D = triangulation(et(:,1:3), nodes(:,1:2)); %this is a 2D version of the mesh, using only the horizontal node positions. This makes things simpler than if it has elevation data.
@@ -75,7 +79,7 @@ for t = 1:NumTurbs
     NodeElevations(t,:) = nodes( TurbineNodes(t,:), 3 );
 end
 % we should now have a NumTurbs x 3 matrix of node elevations
-ElementElevations = squeeze( mean( NodeElevations, 2 ) ); %and now a vector of means for elements.
+ElementElevations = squeeze( mean( NodeElevations, 2 ) ); %and now a vector of mean elevations for elements.
 
 %% Work out turbine elevations
 
