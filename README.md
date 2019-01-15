@@ -8,6 +8,7 @@ can save a lot of clicking.
 The supplementary script Prep_CSV_File.m can take just X and Y coordinates and a MIKE .mesh file and produce the input file required for the main script.
 
 Testing has been done with MIKE 2012. Later versions may work - at least until there are substantial changes to the turbine functionality - but no promises. If you use it with a later version, please let me know what happens!
+(EDIT Jan 2019: Script has been reported to work in MIKE 2017.)
 
 If you use it in a project that leads to a report or publication I would 
 appreciate credit and, if appropriate, a citation for the following paper
