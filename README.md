@@ -13,11 +13,11 @@ If you use it in a project that leads to a report or publication I would
 appreciate credit and, if appropriate, a citation for the following paper
 for which it was developed:
 
-Waldman S, Baston S, Nemalidinne R, Chatzirodou A, Venugopal V, Side J, ìImplementation of tidal turbines in MIKE 3 and Delft3D models of Pentland Firth & Orkney Watersî (2017)
+Waldman S, Baston S, Nemalidinne R, Chatzirodou A, Venugopal V, Side J, ‚ÄúImplementation of tidal turbines in MIKE 3 and Delft3D models of Pentland Firth & Orkney Waters‚Äù (2017)
 Ocean & Coastal Management. http://dx.doi.org/10.1016/j.ocecoaman.2017.04.015
 
 Improvements to this script are welcome. The latest version may be found at https://github.com/TeraWatt-EcoWatt2050/MIKE_add_turbines.
 
 -Simon Waldman.
 
-Address for correspondance or queries: smw13@hw.ac.uk
+Address for correspondance or queries: simon@simonwaldman.me.uk
